@@ -28,3 +28,5 @@ const generateResetToken = () => {
 
   return { rawToken, hashedToken };
 };
+
+export {generateAccessToken, verifyAccessToken, generateRefreshToken, verifyRefreshToken, generateResetToken };
