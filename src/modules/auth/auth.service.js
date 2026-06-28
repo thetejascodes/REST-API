@@ -17,6 +17,11 @@ const register = async ({ name, email, password, role }) => {
     verificationToken: hashedToken,
   });
 
+  try {
+    await sendVerificationEmail(email, token);
+  } catch (error) {
+    console.error(error);
+  }
   const userObj = user.toObject();
   delete userObj.password;
   delete userObj.verificationToken;
