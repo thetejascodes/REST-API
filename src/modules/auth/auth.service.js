@@ -75,8 +75,17 @@ const forgotPassword = async(email) =>{
   await user.save();
 
 }
-const verifyEmail = async()=>{
+const verifyEmail = async(token)=>{
+  const hashedToken = hashToken(token);
+  const user = await User.findOne({ verificationToken: hashedToken }).select(
+    "+verificationToken",
+  );
 
+
+  user.isVerified = true;
+  user.verificationToken = undefined;
+  await user.save();
+  return user;
 }
 const getMe = async()=>{
 
