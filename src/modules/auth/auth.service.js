@@ -58,7 +58,6 @@ const refresh = async (token) => {
   const accessToken = generateAccessToken({id: user._id, role: user.role})
   return { accessToken }
 
-
 }
 
 const logout = async (userId) => {
@@ -74,7 +73,7 @@ const forgotPassword = async(email) =>{
   user.resetPasswordExpire = Date.now() + 15 * 60 * 1000;
 
   await user.save();
-  
+
 }
 const verifyEmail = async()=>{
 
