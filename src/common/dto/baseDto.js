@@ -1,5 +1,5 @@
 import joi from 'joi'
-import ApiError from '../../common/utils/api-error'
+import ApiError from '../../common/utils/api-error.js'
 
 class BaseDto {
     static schema = joi.object({})
@@ -16,10 +16,10 @@ class BaseDto {
 
         if (error) {
             const errors = error.details.map((d) => d.message)
-            throw ApiError.badRequest(errors.join('; '))
+            return {errors,value:null}
         }
 
-        return value
+        return {value,error:null}
     }
 }
 
